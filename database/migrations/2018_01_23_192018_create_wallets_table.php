@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserInfo extends Migration
+class CreateWalletsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class UserInfo extends Migration
      */
     public function up()
     {
-        Schema::create('user_info', function (Blueprint $table) {
+        Schema::create('wallets', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('userId');
+            $table->integer('user_id');
             $table->decimal('bitcoin');
             $table->decimal('etherium');
             $table->decimal('litcoin');
@@ -30,6 +30,6 @@ class UserInfo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_info');
+        Schema::dropIfExists('wallets');
     }
 }
