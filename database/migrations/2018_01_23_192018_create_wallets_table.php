@@ -16,6 +16,7 @@ class CreateWalletsTable extends Migration
         Schema::create('wallets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->string('name');
             $table->decimal('bitcoin');
             $table->decimal('etherium');
             $table->decimal('litcoin');
