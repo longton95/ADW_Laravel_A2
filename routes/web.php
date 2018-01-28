@@ -7,11 +7,19 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', 'adminController@index');
 
 Route::get('/admin/{user}', 'adminController@details');
 
-Auth::routes();
+Route::get('/wallet', 'userController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/createWallet', 'userController@createWallet');
+
+Route::get('/editWallet', 'userController@editWallet');
+
+Route::patch('/wallet/{id}', 'userController@update');
+
+
 
