@@ -27,6 +27,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function role(){
+
+      return $this->role;
+   }
+
+   public function userID(){
+
+     return $this->id;
+ }
+
 
     public function wallets(){
 
