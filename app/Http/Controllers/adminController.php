@@ -6,27 +6,31 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use Auth;
+
 class adminController extends Controller
 {
-   /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-   public function __construct()
-   {
-      $this->middleware('auth');
-   }
+    /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */
+    public function __construct() {
+
+        $this->middleware('auth');
+    }
 
     public function index() {
-      $users = User::all();
+
+        $users = User::with('wallets')->get();
 
         return view('admin.index', compact('users'));
     }
 
 
-    public function details(User $user) {
+    public function details($id) {
 
+        $user = User::with('wallets')->find($id);
 
         return view('admin.users', compact('user'));
     }
