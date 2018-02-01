@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -35,11 +37,23 @@ class User extends Authenticatable
    public function userID(){
 
      return $this->id;
- }
+  }
 
 
-    public function wallets(){
+   public function wallets(){
 
       return $this->hasMany(Wallet::class);
-    }
+   }
+
+    public function searchableAs() {
+
+      return 'posts_index';
+
+   }
+
+   public function toSearchableArray() {
+      $array = $this->toArray();
+
+      return $array;
+   }
 }

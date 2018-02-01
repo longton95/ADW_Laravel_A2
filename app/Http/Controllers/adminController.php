@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
-
 use Auth;
+
 
 class adminController extends Controller
 {
@@ -29,6 +29,10 @@ class adminController extends Controller
 
 
     public function details($id) {
+
+      $orders = User::search('Star Trek')->raw();
+
+      dd($orders);
 
         $user = User::with('wallets')->find($id);
 
