@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/Chart.bundle.min.js') }}"></script>
 </head>
 <body>
 <div id="app">
@@ -61,6 +62,7 @@
 </div>
 
 <!-- Scripts -->
+@yield('javascript')
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
