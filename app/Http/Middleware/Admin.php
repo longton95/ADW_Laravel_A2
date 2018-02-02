@@ -16,7 +16,10 @@ class Admin
     public function handle($request, Closure $next)
     {
         if (auth()->user()->role != "admin") {
-            return redirect('ffffff');
+
+           $noAdmin = true;
+
+           return redirect('/')->withErrors(compact('noAdmin'));
         }
 
         return $next($request);
