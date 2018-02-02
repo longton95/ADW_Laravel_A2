@@ -30,7 +30,7 @@
                        <td>{{ $user->lastName }}</td>
                        <td>{{ $user->email }}</td>
                        <td>{{ $user->role }}</td>
-                       <td><a href="/admin/edit/{{$user->id}}">Edit</a></td>
+                       <td><a href="/admin/{{$user->id}}">Show</a></td>
                        <td><a href="/admin/delete/{{$user->id}}">Delete</a></td>
                    </tr>
                       @endforeach
