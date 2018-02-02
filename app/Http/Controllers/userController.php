@@ -20,6 +20,13 @@ class userController extends Controller
     }
 
     public function index() {
+
+      $noAdmin = false;
+
+        return view('home',compact('noAdmin'));
+    }
+
+    public function wallets() {
         $wallets = User::find(Auth::user()->id)->wallets;
         if ($wallets->count() == 0) {
             $wallets = false;
