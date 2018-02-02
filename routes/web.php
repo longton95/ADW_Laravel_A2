@@ -11,7 +11,7 @@ Auth::routes();
 
 Route::get('/', 'userController@index')->name('index');
 
-Route::get('wallet', 'userController@index')->name('wallet');
+Route::get('wallet', 'userController@Wallets')->name('wallet');
 
 Route::get('createWallet', 'userController@createWallet')->name('createWallet');
 
@@ -28,6 +28,6 @@ Route::group(['middleware' => 'admin'], function()
 
    Route::get('admin/{user}', 'adminController@details')->name('details');
 
-   Route::get('admin/{user}/delete', 'adminController@delete')->name('deleteUser');
+   Route::get('admin/delete/{user}', 'adminController@delete')->name('deleteUser');
 });
 
