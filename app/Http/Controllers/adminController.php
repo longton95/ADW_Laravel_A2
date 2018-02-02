@@ -30,20 +30,18 @@ class adminController extends Controller
 
     public function details($id) {
 
-      $orders = User::search('Star Trek')->raw();
+      $user = User::find($id);
 
-      dd($orders);
+      $wallets = User::find($id)->wallets;
 
-        $user = User::with('wallets')->find($id);
-
-        return view('admin.users', compact('user'));
+        return view('admin.users', compact('user','wallets'));
     }
 
-    // public function details($id) {
-    //   $user = User::find($id);
-    //
-    //   return $user;
-    //
-    //     return view('admin.users', compact('user'));
-    // }
+    public function delete($id) {
+
+      User::destroy($id);
+
+      return redirect('/admin');
+
+    }
 }
