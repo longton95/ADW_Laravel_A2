@@ -1,10 +1,9 @@
 <?php
-
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Moloquent;
 
-class Wallet extends Model
+class Wallet extends Moloquent
 {
    protected $fillable = ['user_id', 'name', 'bitcoin', 'etherium', 'litcoin'];
 
@@ -14,3 +13,4 @@ class Wallet extends Model
       return $this->belongsTo(User::class);
    }
 }
+
