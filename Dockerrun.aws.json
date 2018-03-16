@@ -1,76 +1,67 @@
 {
-  "AWSEBDockerrunVersion": 2,
-  "containerDefinitions": [
-    {
-      "essential": true,
-      "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/php-fpm:latest",
-      "memory": 256,
-      "mountPoints": [
-        {
-          "containerPath": "/var/www",
-          "sourceVolume": "CoinChecker"
-        },
-        {
-          "containerPath": "/usr/local/var/log",
-          "sourceVolume": "awseb-logs-php-fpm"
-        }
-      ],
-      "name": "php-fpm"
-    },
-    {
-      "essential": true,
-      "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/mongo:latest",
-      "memory": 256,
-      "mountPoints": [
-        {
-          "containerPath": "/var/www",
-          "sourceVolume": "CoinChecker"
-        },
-        {
-          "containerPath": "/var/log/mongo",
-          "sourceVolume": "awseb-logs-mongo"
-        }
-      ],
-      "name": "mongo",
-      "portMappings": [
-        {
-          "containerPort": 27017,
-          "hostPort": 27017
-        }
-      ]
-    },
-    {
-      "essential": true,
-      "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/nginx:latest",
-      "links": [
-        "php-fpm"
-      ],
-      "memory": 512,
-      "mountPoints": [
-        {
-          "containerPath": "/var/www",
-          "sourceVolume": "CoinChecker"
-        },
-        {
-          "containerPath": "/var/log/nginx",
-          "sourceVolume": "awseb-logs-nginx"
-        }
-      ],
-      "name": "nginx",
-      "portMappings": [
-        {
-          "containerPort": 80,
-          "hostPort": 80
-        }
-      ]
-    }
-  ],
-  "volumes": [
-    {
+   "AWSEBDockerrunVersion": 2,
+   "containerDefinitions": [{
+         "essential": true,
+         "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/php-fpm:latest",
+         "memory": 256,
+         "mountPoints": [{
+               "containerPath": "/var/www",
+               "sourceVolume": "CoinChecker"
+            },
+            {
+               "containerPath": "/usr/local/var/log",
+               "sourceVolume": "awseb-logs-php-fpm"
+            }
+         ],
+         "name": "php-fpm"
+      },
+      {
+         "name": "mongo",
+         "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/mongo:latest",
+         "essential": true,
+         "memory": 256,
+         "command": ["mongod", "--storageEngine=wiredTiger", "--logpath=/var/log/mongodb/mongo.log"],
+         "portMappings": [{
+            "hostPort": 27017,
+            "containerPort": 27017
+         }],
+         "mountPoints": [{
+               "sourceVolume": "CoinChecker",
+               "containerPath": "/data/db"
+            },
+            {
+               "sourceVolume": "awseb-logs-mongo-app",
+               "containerPath": "/var/log/mongodb"
+            }
+         ]
+      },
+      {
+         "essential": true,
+         "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/nginx:latest",
+         "links": [
+            "php-fpm"
+         ],
+         "memory": 256,
+         "mountPoints": [{
+               "containerPath": "/var/www",
+               "sourceVolume": "CoinChecker"
+            },
+            {
+               "containerPath": "/var/log/nginx",
+               "sourceVolume": "awseb-logs-nginx"
+            }
+         ],
+         "name": "nginx",
+         "portMappings": [{
+            "containerPort": 80,
+            "hostPort": 80
+         }]
+      }
+   ],
+   "volumes": [{
       "host": {
-        "sourcePath": "/var/app/current"
+         "sourcePath": "/var/app/current"
       },
       "name": "CoinChecker"
-    }
-  ]
+   }]
 }
