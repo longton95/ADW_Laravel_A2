@@ -70,7 +70,7 @@
       "host": {
         "sourcePath": "/var/app/current"
       },
-      "name": "CoinChecker"
+      "name": "application"
     }
   ]
 }
