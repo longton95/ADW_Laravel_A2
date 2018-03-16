@@ -1,0 +1,76 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "essential": true,
+      "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/php-fpm:latest",
+      "memory": 256,
+      "mountPoints": [
+        {
+          "containerPath": "/var/www",
+          "sourceVolume": "application"
+        },
+        {
+          "containerPath": "/usr/local/var/log",
+          "sourceVolume": "awseb-logs-php-fpm"
+        }
+      ],
+      "name": "php-fpm"
+    },
+    {
+      "essential": true,
+      "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/mongo:latest",
+      "memory": 256,
+      "mountPoints": [
+        {
+          "containerPath": "/var/www",
+          "sourceVolume": "application"
+        },
+        {
+          "containerPath": "/var/log/mongo",
+          "sourceVolume": "awseb-logs-mongo"
+        }
+      ],
+      "name": "mongo",
+      "portMappings": [
+        {
+          "containerPort": 27017,
+          "hostPort": 27017
+        }
+      ]
+    },
+    {
+      "essential": true,
+      "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/nginx:latest",
+      "links": [
+        "php-fpm"
+      ],
+      "memory": 512,
+      "mountPoints": [
+        {
+          "containerPath": "/var/www",
+          "sourceVolume": "application"
+        },
+        {
+          "containerPath": "/var/log/nginx",
+          "sourceVolume": "awseb-logs-nginx"
+        }
+      ],
+      "name": "nginx",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ]
+    }
+  ],
+  "volumes": [
+    {
+      "host": {
+        "sourcePath": "/var/app"
+      },
+      "name": "application"
+    }
+  ]
+}
