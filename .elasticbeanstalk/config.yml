@@ -2,6 +2,8 @@ branch-defaults:
   Deployment:
     environment: webassignment-dev
     group_suffix: null
+  master:
+    environment: webassignment-dev
 global:
   application_name: webassignment
   branch: null

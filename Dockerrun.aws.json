@@ -68,9 +68,9 @@
   "volumes": [
     {
       "host": {
-        "sourcePath": "/var/app"
+        "sourcePath": "/var/app/current"
       },
-      "name": "application"
+      "name": "CoinChecker"
     }
   ]
 }
