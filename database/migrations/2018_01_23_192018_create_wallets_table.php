@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateWalletsTable extends Migration
@@ -13,14 +13,14 @@ class CreateWalletsTable extends Migration
      */
     public function up()
     {
-        Schema::create('wallets', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->string('name');
-            $table->decimal('bitcoin');
-            $table->decimal('etherium');
-            $table->decimal('litcoin');
-            $table->timestamps();
+        Schema::create('wallets', function (Blueprint $collection) {
+            $collection->increments('id');
+            $collection->integer('user_id');
+            $collection->string('name');
+            $collection->decimal('bitcoin');
+            $collection->decimal('etherium');
+            $collection->decimal('litcoin');
+            $collection->timestamps();
         });
     }
 
