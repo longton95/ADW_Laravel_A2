@@ -8,7 +8,7 @@
       "mountPoints": [
         {
           "containerPath": "/var/www",
-          "sourceVolume": "application"
+          "sourceVolume": "CoinChecker"
         },
         {
           "containerPath": "/usr/local/var/log",
@@ -24,7 +24,7 @@
       "mountPoints": [
         {
           "containerPath": "/var/www",
-          "sourceVolume": "application"
+          "sourceVolume": "CoinChecker"
         },
         {
           "containerPath": "/var/log/mongo",
@@ -49,7 +49,7 @@
       "mountPoints": [
         {
           "containerPath": "/var/www",
-          "sourceVolume": "application"
+          "sourceVolume": "CoinChecker"
         },
         {
           "containerPath": "/var/log/nginx",
@@ -70,7 +70,7 @@
       "host": {
         "sourcePath": "/var/app/current"
       },
-      "name": "application"
+      "name": "CoinChecker"
     }
   ]
 }
