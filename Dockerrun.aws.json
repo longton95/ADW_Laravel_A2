@@ -30,7 +30,7 @@
                "containerPath": "/data/db"
             },
             {
-               "sourceVolume": "awseb-logs-mongo-app",
+               "sourceVolume": "awseb-logs-mongo",
                "containerPath": "/var/log/mongodb"
             }
          ]
