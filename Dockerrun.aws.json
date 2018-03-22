@@ -3,10 +3,10 @@
    "containerDefinitions": [{
          "essential": true,
          "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/php-fpm:latest",
-         "memory": 256,
+         "memory": 128,
          "mountPoints": [{
                "containerPath": "/var/www",
-               "sourceVolume": "CoinChecker"
+               "sourceVolume": "application"
             },
             {
                "containerPath": "/usr/local/var/log",
@@ -21,7 +21,7 @@
          "memory": 256,
          "mountPoints": [{
                "containerPath": "/var/www",
-               "sourceVolume": "CoinChecker"
+               "sourceVolume": "application"
             },
             {
                "containerPath": "/var/log/workspace",
@@ -37,9 +37,9 @@
          "links": [
             "php-fpm"
          ],
-         "memory": 256,
+         "memory": 128,
          "mountPoints": [{
-               "sourceVolume": "CoinChecker",
+               "sourceVolume": "application",
                "containerPath": "/var/www"
 
             },
@@ -59,14 +59,14 @@
          "name": "mongo",
          "image": "515529825405.dkr.ecr.eu-west-1.amazonaws.com/mongo:latest",
          "essential": true,
-         "memory": 256,
+         "memory": 128,
          "command": ["mongod", "--storageEngine=wiredTiger", "--logpath=/var/log/mongodb/mongo.log"],
          "portMappings": [{
             "hostPort": 27017,
             "containerPort": 27017
          }],
          "mountPoints": [{
-               "sourceVolume": "CoinChecker",
+               "sourceVolume": "application",
                "containerPath": "/data/db"
             },
             {
@@ -84,6 +84,6 @@
       "host": {
          "sourcePath": "/var/app/current"
       },
-      "name": "CoinChecker"
+      "name": "application"
    }]
 }
