@@ -37,18 +37,17 @@
          "links": [
             "php-fpm"
          ],
-         "memory": 128,
-         "mountPoints": [{
-               "sourceVolume": "application",
-               "containerPath": "/var/www"
-
-            },
-            {
-               "sourceVolume": "awseb-logs-nginx",
-               "containerPath": "/var/log/nginx"
-
-            }
-         ],
+         "memory": 256,
+         "mountPoints": [
+                 {
+                   "containerPath": "/var/www",
+                   "sourceVolume": "application"
+                 },
+                 {
+                   "containerPath": "/var/log/nginx",
+                   "sourceVolume": "awseb-logs-nginx"
+                 }
+               ],
 
          "portMappings": [{
             "containerPort": 80,
