@@ -1,12 +1,12 @@
 branch-defaults:
-  master:
-    environment: advancedweb-dev
+  dev:
+    environment: ADW-Laravel-A2-dev
     group_suffix: null
 global:
-  application_name: advancedweb
+  application_name: ADW_Laravel_A2
   branch: null
   default_ec2_keyname: aws-eb
-  default_platform: Multi-container Docker 17.09.1-ce (Generic)
+  default_platform: Multi-container Docker 17.12.0-ce (Generic)
   default_region: eu-west-1
   include_git_submodules: true
   instance_profile: null

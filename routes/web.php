@@ -11,6 +11,9 @@ Auth::routes();
 
 Route::get('/', 'userController@index')->name('index');
 
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('wallet', 'userController@Wallets')->name('wallet');
 
 Route::get('createWallet', 'userController@createWallet')->name('createWallet');

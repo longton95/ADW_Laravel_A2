@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
+use Auth;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -35,5 +38,39 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('google')->user();
+        $authUser = $this->findOrCreateUser($user, 'google');
+        Auth::login($authUser, true);
+        return redirect($this->redirectTo);
+    }
+    public function findOrCreateUser($user)
+    {
+        $authUser = User::where('provider_id', $user->id)->first();
+        if ($authUser) {
+            return $authUser;
+        }
+        return User::create([
+        'firstName'=> $user->user['name']['givenName'],
+        'lastName'=> $user->user['name']['familyName'],
+        'email'    => $user->email,
+        'provider' => 'google',
+        'role' => 'user',
+        'provider_id' => $user->id
+    ]);
     }
 }
