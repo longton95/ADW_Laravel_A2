@@ -1,4 +1,0 @@
-build:
-  docker:
-    app: app.Dockerfile
-    web: web.Dockerfile
