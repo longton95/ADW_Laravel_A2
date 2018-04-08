@@ -166,6 +166,8 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Jenssegers\Mongodb\MongodbQueueServiceProvider::class,
+        'Jenssegers\Mongodb\Auth\PasswordResetServiceProvider',
+
 
 
         /*
