@@ -74,6 +74,11 @@
                             </div>
                         </div>
                     </form>
+                    <div class="row">
+                     <div class="col-md-6 col-sm-6 col-xs-6">
+                        <a href="{{ url('/login/google') }}" class="btn btn-google"><i class="fa fa-google"></i> Google</a>
+                        </div>
+                     </div>
                 </div>
             </div>
         </div>

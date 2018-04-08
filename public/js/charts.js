@@ -27,9 +27,9 @@ function createChart() {
 
 		lables.push(property);
 		bitcoin.push(data[property]);
-		var precision = 10000; // 2 decimals
-		etherium.push(Math.floor(Math.random() * (800 * precision - 700 * precision) + 700 * precision) / (1 * precision));
-		litecoin.push(Math.floor(Math.random() * (150 * precision - 120 * precision) + 100 * precision) / (1 * precision));
+		var precision = 10000; // 4 decimals
+		etherium.push(Math.floor(Math.random() * (300 * precision - 250 * precision) + 250 * precision) / (1 * precision));
+		litecoin.push(Math.floor(Math.random() * (90 * precision - 75 * precision) + 75 * precision) / (1 * precision));
 	}
 
 	var bitcoinChart = new Chart(bitcoinChart, {
