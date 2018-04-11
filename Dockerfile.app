@@ -15,10 +15,13 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer --version
 
 COPY ./composer.json .
-RUN composer install --no-scripts --no-autoloader
+RUN composer install --no-dev --no-scripts --no-autoloader
 
 ADD . .
 RUN composer dump-autoload --optimize
+
+RUN cp .env.example .env
+
 RUN php artisan key:generate
 
 
