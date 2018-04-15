@@ -74,9 +74,11 @@
                             </div>
                         </div>
                     </form>
-                    <div class="row">
-                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <a href="{{ url('/login/google') }}" class="btn btn-google"><i class="fa fa-google"></i> Google</a>
+                    <div class="form-group row">
+                       <div class="col-lg-8 offset-lg-4">
+                           <a href="{{ url('/login/google') }}" class="btn btn-google login-btn"><i class="fa fa-google"></i> Google</a>
+                           <a href="{{ url('/login/github') }}" class="btn btn-github login-btn"><i class="fa fa-github"></i> Github</a>
+                           <a href="{{ url('/login/twitter') }}" class="btn btn-twitter login-btn"><i class="fa fa-twitter"></i> Twitter</a>
                         </div>
                      </div>
                 </div>

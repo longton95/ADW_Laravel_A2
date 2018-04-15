@@ -41,9 +41,9 @@ class LoginController extends Controller
     }
 
 
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
     /**
@@ -51,26 +51,37 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
-        $user = Socialite::driver('google')->user();
-        $authUser = $this->findOrCreateUser($user, 'google');
+        $user = Socialite::driver($provider)->user();
+        $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
         return redirect($this->redirectTo);
     }
-    public function findOrCreateUser($user)
+    public function findOrCreateUser($user, $provider)
     {
-        $authUser = User::where('email', $user->email)->first();
+         $authUser = User::where('email', $user->email)->first();
         if ($authUser) {
             return $authUser;
         }
-        return User::create([
-        'firstName'=> $user->user['name']['givenName'],
-        'lastName'=> $user->user['name']['familyName'],
-        'email'    => $user->email,
-        'provider' => 'google',
-        'role' => 'user',
-        'provider_id' => $user->id
-    ]);
+        if ($provider === 'google') {
+            return User::create([
+           'firstName'=> $user->user['name']['givenName'],
+           'lastName'=> $user->user['name']['familyName'],
+           'email'    => $user->email,
+           'provider' => $provider,
+           'role' => 'user',
+           'provider_id' => $user->id
+       ]);
+        } else {
+            return User::create([
+            'firstName'=> $user->name,
+            'lastName'=> '',
+            'email'    => $user->email,
+            'provider' => $provider,
+            'role' => 'user',
+            'provider_id' => $user->id
+         ]);
+        }
     }
 }
