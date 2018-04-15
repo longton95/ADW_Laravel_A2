@@ -9,9 +9,11 @@
                   <a href="/createWallet">Create</a>
                    /
                   <a href="/editWallet">Edit</a>
+                  /
+                 <a href="/deleteWallet">Delete</a>
                </span>
                </div>
-               
+
                 <div class="card-body">
 
                        <form class="form-horizontal" method="POST" action="/createWallet">
