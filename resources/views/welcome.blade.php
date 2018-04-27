@@ -3,7 +3,7 @@
 
 You have just registered you email with CoinChecker click the button below to get started.
 
-@component('mail::button', ['url' => 'http://localhost/'])
+@component('mail::button', ['url' => 'http://beawizard.com/'])
 Get Started
 @endcomponent
 

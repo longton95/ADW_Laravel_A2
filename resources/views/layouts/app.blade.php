@@ -40,7 +40,11 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
+                               @if (Auth::user()->avatar)
+                                  <img height="25px" width="25px" src="https://s3-eu-west-1.amazonaws.com/advanced-web{{ Auth::user()->avatar }}" />
+                               @else
                                <img height="25px" src="{{ Auth::user()->gravatar }}" />
+                               @endif
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <a href="{{ route('logout') }}" class="dropdown-item"

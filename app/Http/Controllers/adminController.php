@@ -21,6 +21,7 @@ class adminController extends Controller
 
     public function index()
     {
+      // Finding wallets all the users and their wallets.
         $users = User::with('wallets')->get();
 
         return view('admin.index', compact('users'));
@@ -29,6 +30,7 @@ class adminController extends Controller
 
     public function details($id)
     {
+      // Find the user with thw passed ID and their wallets
         $user = User::find($id);
 
         $wallets = User::find($id)->wallets;
@@ -38,6 +40,7 @@ class adminController extends Controller
 
     public function delete($id)
     {
+      // Deleting the User with the passed ID
         User::destroy($id);
 
         return redirect('/admin');

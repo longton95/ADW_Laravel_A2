@@ -23,18 +23,21 @@ services:
     working_dir: /var/www/public
     volumes_from:
       - app
+    depends_on:
+      - mongo
     ports:
       - 80:80
 
   # The Database
   mongo:
-     image: mongo:latest
+     image: mongo:3.4
      container_name: "mongodb"
+     restart: always
      environment:
        - MONGO_DATA_DIR=/data/db
        - MONGO_LOG_DIR=/dev/null
      volumes:
-       - ./data/db:/data/db
+       - ./data:/data
      ports:
          - 27017:27017
      command: mongod --smallfiles --logpath=/dev/null # --quiet

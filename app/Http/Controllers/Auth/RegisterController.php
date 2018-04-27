@@ -8,6 +8,7 @@ Use Mail;
 use App\Mail\Welcome;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Storage;
 use Hash;
 
 
@@ -67,13 +68,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      $user = User::create([
-            'firstName' => $data['firstName'],
-            'lastName' => $data['lastName'],
-            'email' => $data['email'],
-            'role' => "user",
-            'password' => Hash::make($data['password']),
-        ]);
+      if (isset($data['image'])) {
+
+         $image = $data['image'];
+         $imageFileName = time() . '.' . $image->getClientOriginalExtension();
+         $s3 = \Storage::disk('s3');
+         $filePath = '/profileImages/' . $imageFileName;
+         $s3->put($filePath, file_get_contents($image), 'public');
+
+         $user = User::create([
+               'firstName' => $data['firstName'],
+               'lastName' => $data['lastName'],
+               'email' => $data['email'],
+               'role' => "user",
+               'password' => Hash::make($data['password']),
+               'avatar' => $filePath,
+           ]);
+      } else {
+
+         $user = User::create([
+               'firstName' => $data['firstName'],
+               'lastName' => $data['lastName'],
+               'email' => $data['email'],
+               'role' => "user",
+               'password' => Hash::make($data['password']),
+           ]);
+      }
+
         Mail::to($data['email'])->send(new Welcome($user));
         return $user;
     }
