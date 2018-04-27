@@ -15,9 +15,12 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
+      // Check if authed user is admin
         if (auth()->user()->role != "admin") {
 
            $noAdmin = true;
+
+           // Pass noAdmin back to the controller
 
            return redirect('/')->withErrors(compact('noAdmin'));
         }
