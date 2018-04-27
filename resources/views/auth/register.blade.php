@@ -7,7 +7,8 @@
             <div class="card">
                 <div class="card-header">Register</div>
                 <div class="card-body">
-                    <form role="form" method="POST" action="{{ url('/register') }}">
+                   {!!Form::open(array('url' => '/register', 'method'=>'POST', 'files' => true))!!}
+
                         {!! csrf_field() !!}
 
                         <div class="form-group row">
@@ -105,13 +106,23 @@
                         </div>
 
                         <div class="form-group row">
+                           <label for="image" class="col-lg-4 col-form-label text-lg-right">Avatar</label>
+                           <div class="col-lg-6">
+                              <input type="file" name="image">
+                              <div class="invalid-feedback">
+                                  <strong>If an image is not uploaded Gravatar will be used.</strong>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="form-group row">
                             <div class="col-lg-6 offset-lg-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    {!!Form::close()!!}
                 </div>
             </div>
         </div>
