@@ -1,7 +1,13 @@
 FROM nginx:1.10
 
+# Use nginx image and copy the config its desired location
+
 ADD vhost.conf /etc/nginx/conf.d/default.conf
 
+# Copy the public folder so nginx can access index.php
+
 COPY public /var/www/public
+
+# Expose the ports, SSH was too hard but the port is there :)
 
 EXPOSE 80 443
