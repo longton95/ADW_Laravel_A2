@@ -12,7 +12,7 @@ class User extends Authenticatable
     protected $collection = 'users';
 
     protected $fillable = [
-        'firstName', 'lastName', 'email', 'role', 'password', 'provider', 'provider_id'
+        'firstName', 'lastName', 'email', 'role', 'password', 'provider', 'provider_id', 'avatar'
     ];
 
 
@@ -35,6 +35,7 @@ class User extends Authenticatable
     $hash = md5(strtolower(trim($this->attributes['email'])));
     return "http://www.gravatar.com/avatar/$hash";
 }
+
 
    public function wallets(){
 
